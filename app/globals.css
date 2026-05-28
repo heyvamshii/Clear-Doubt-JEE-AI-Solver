@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: #0A1628;
+  color: #ffffff;
+  font-family: "Inter", "Poppins", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+textarea {
+  font-family: inherit;
+}
+
+/* Subtle scrollbar tweak so the streaming answer card stays clean */
+.answer-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.answer-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(16, 185, 129, 0.35);
+  border-radius: 999px;
+}

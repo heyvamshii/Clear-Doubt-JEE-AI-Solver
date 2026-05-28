@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx next *)",
+      "PowerShell(Start-Process \"chrome.exe\" -ArgumentList '--profile-directory=Default','https://youtube.com')",
+      "PowerShell($py = \\(Get-Command python -ErrorAction SilentlyContinue\\).Source; $pip = \\(Get-Command pip -ErrorAction SilentlyContinue\\).Source; $chrome = Test-Path 'C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe'; $chromeX86 = Test-Path 'C:\\\\Program Files \\(x86\\)\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe'; \"python: $py\"; if \\($py\\) { python --version }; \"pip: $pip\"; \"chrome \\(Program Files\\): $chrome\"; \"chrome \\(x86\\): $chromeX86\")",
+      "PowerShell($userData = \"$env:LOCALAPPDATA\\\\Google\\\\Chrome\\\\User Data\"; if \\(Test-Path $userData\\) { Get-ChildItem $userData -Directory | Where-Object { $_.Name -match '^\\(Default|Profile \\\\d+\\)$' } | ForEach-Object { $prefs = Join-Path $_.FullName 'Preferences'; if \\(Test-Path $prefs\\) { try { $name = \\(Get-Content $prefs -Raw -Encoding UTF8 | ConvertFrom-Json\\).profile.name } catch { $name = '\\(unknown\\)' } } else { $name = '\\(no Preferences file\\)' }; \"$\\($_.Name\\) -> $name\" } } else { \"Chrome user data dir not found at $userData\" })",
+      "PowerShell($root = \"D:\\\\New Volume D\\\\Coding\\\\jerry\"; New-Item -ItemType Directory -Force -Path $root, \"$root\\\\jerry\", \"$root\\\\jerry\\\\tools\" | Out-Null; \"Created $root\")",
+      "Bash(tail -100 \"/c/Users/vamsh/AppData/Local/Temp/claude/D--New-Volume-D-Coding-Claude-Code/83168e61-66c1-4f56-84d8-f23b24c9f9b5/tasks/bi1h0130d.output\")",
+      "Bash(mkdir -p \"/d/New Volume D/Coding/Projects\")",
+      "Bash(mv \"/d/New Volume D/Coding/Claude/Code/leadgen-ai\" \"/d/New Volume D/Coding/Projects/LeadGen AI\")",
+      "Read(//d/New Volume D/Coding/Projects/LeadGen AI/**)",
+      "PowerShell($src = \"D:\\\\New Volume D\\\\Coding\\\\Claude\\\\Code\\\\leadgen-ai\"; $dst = \"D:\\\\New Volume D\\\\Coding\\\\Projects\\\\LeadGen AI\"; if \\(-not \\(Test-Path \"D:\\\\New Volume D\\\\Coding\\\\Projects\"\\)\\) { New-Item -ItemType Directory -Path \"D:\\\\New Volume D\\\\Coding\\\\Projects\" | Out-Null }; try { Move-Item -Path $src -Destination $dst -ErrorAction Stop; Write-Host \"MOVED OK\" } catch { Write-Host \"MOVE FAILED: $_\"; Write-Host \"Trying copy + delete fallback...\"; Copy-Item -Path $src -Destination $dst -Recurse -Force; Remove-Item -Path $src -Recurse -Force -ErrorAction SilentlyContinue; Write-Host \"COPY DONE\" }; Get-ChildItem $dst | Select-Object Name)",
+      "Bash(npx --yes next build)",
+      "Bash(cp \"D:\\\\New Volume D\\\\Coding\\\\Vamshi_Krishna_Resume.pdf\" \"D:\\\\New Volume D\\\\Coding\\\\Claude\\\\Code\\\\portfolio\\\\public\\\\resume.pdf\" && ls \"D:\\\\New Volume D\\\\Coding\\\\Claude\\\\Code\\\\portfolio\\\\public\\\\\")",
+      "PowerShell(Copy-Item -Path \"D:\\\\New Volume D\\\\Coding\\\\Vamshi_Krishna_Resume.pdf\" -Destination \"D:\\\\New Volume D\\\\Coding\\\\Claude\\\\Code\\\\portfolio\\\\public\\\\resume.pdf\" -Force)",
+      "Bash(find \"C:\\\\Users\\\\vamsh\\\\.claude\\\\projects\" -type f \\\\\\( -iname \"*.jpg\" -o -iname \"*.jpeg\" -o -iname \"*.png\" -o -iname \"*.webp\" \\\\\\) -newer \"D:/New Volume D/Coding/Claude/Code/portfolio/package.json\" 2>/dev/null | head -20)",
+      "PowerShell($src = \"D:\\\\New Volume D\\\\Coding\\\\Claude\\\\Code\\\\portfolio\"; $destParent = \"D:\\\\New Volume D\\\\Coding\\\\Projects\"; $dest = \"$destParent\\\\portfolio\"; if \\(-not \\(Test-Path $destParent\\)\\) { New-Item -ItemType Directory -Path $destParent -Force | Out-Null }; try { Move-Item -Path $src -Destination $dest -ErrorAction Stop; Write-Output \"MOVED_OK\" } catch { Write-Output \"MOVE_FAILED: $\\($_.Exception.Message\\)\" }; if \\(Test-Path $dest\\) { Write-Output \"\"; Write-Output \"Contents at new location:\"; Get-ChildItem $dest -Name })"
+    ]
+  }
+}
