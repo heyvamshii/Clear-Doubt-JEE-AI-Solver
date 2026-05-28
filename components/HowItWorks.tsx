@@ -1,10 +1,10 @@
-import { ClipboardList, Zap, CircleCheck } from "lucide-react";
+import { Camera, Zap, CircleCheck } from "lucide-react";
 
 const ITEMS = [
   {
-    Icon: ClipboardList,
-    title: "Paste Your Question",
-    body: "MCQ or theory, any JEE subject",
+    Icon: Camera,
+    title: "Type, Paste, or Snap",
+    body: "MCQ, theory, or a photo of the question",
   },
   {
     Icon: Zap,

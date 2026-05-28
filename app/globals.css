@@ -22,3 +22,23 @@ textarea {
   background-color: rgba(16, 185, 129, 0.35);
   border-radius: 999px;
 }
+
+/* ── KaTeX polish inside the answer card ────────────────────── */
+/* Inline math: nudge baseline a hair so symbols sit cleanly in prose */
+.katex {
+  font-size: 1.02em;
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+/* Display math: never overflow the card; allow horizontal scroll if a long
+   equation needs it without breaking the layout */
+.katex-display {
+  margin: 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
+.katex-display > .katex {
+  white-space: nowrap;
+}

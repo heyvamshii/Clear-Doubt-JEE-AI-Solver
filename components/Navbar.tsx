@@ -20,7 +20,7 @@ export default function Navbar() {
 
         <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-accent" />
-          Powered by Claude
+          Powered by Gemini
         </div>
       </div>
     </nav>

@@ -16,7 +16,11 @@
       "Bash(cp \"D:\\\\New Volume D\\\\Coding\\\\Vamshi_Krishna_Resume.pdf\" \"D:\\\\New Volume D\\\\Coding\\\\Claude\\\\Code\\\\portfolio\\\\public\\\\resume.pdf\" && ls \"D:\\\\New Volume D\\\\Coding\\\\Claude\\\\Code\\\\portfolio\\\\public\\\\\")",
       "PowerShell(Copy-Item -Path \"D:\\\\New Volume D\\\\Coding\\\\Vamshi_Krishna_Resume.pdf\" -Destination \"D:\\\\New Volume D\\\\Coding\\\\Claude\\\\Code\\\\portfolio\\\\public\\\\resume.pdf\" -Force)",
       "Bash(find \"C:\\\\Users\\\\vamsh\\\\.claude\\\\projects\" -type f \\\\\\( -iname \"*.jpg\" -o -iname \"*.jpeg\" -o -iname \"*.png\" -o -iname \"*.webp\" \\\\\\) -newer \"D:/New Volume D/Coding/Claude/Code/portfolio/package.json\" 2>/dev/null | head -20)",
-      "PowerShell($src = \"D:\\\\New Volume D\\\\Coding\\\\Claude\\\\Code\\\\portfolio\"; $destParent = \"D:\\\\New Volume D\\\\Coding\\\\Projects\"; $dest = \"$destParent\\\\portfolio\"; if \\(-not \\(Test-Path $destParent\\)\\) { New-Item -ItemType Directory -Path $destParent -Force | Out-Null }; try { Move-Item -Path $src -Destination $dest -ErrorAction Stop; Write-Output \"MOVED_OK\" } catch { Write-Output \"MOVE_FAILED: $\\($_.Exception.Message\\)\" }; if \\(Test-Path $dest\\) { Write-Output \"\"; Write-Output \"Contents at new location:\"; Get-ChildItem $dest -Name })"
+      "PowerShell($src = \"D:\\\\New Volume D\\\\Coding\\\\Claude\\\\Code\\\\portfolio\"; $destParent = \"D:\\\\New Volume D\\\\Coding\\\\Projects\"; $dest = \"$destParent\\\\portfolio\"; if \\(-not \\(Test-Path $destParent\\)\\) { New-Item -ItemType Directory -Path $destParent -Force | Out-Null }; try { Move-Item -Path $src -Destination $dest -ErrorAction Stop; Write-Output \"MOVED_OK\" } catch { Write-Output \"MOVE_FAILED: $\\($_.Exception.Message\\)\" }; if \\(Test-Path $dest\\) { Write-Output \"\"; Write-Output \"Contents at new location:\"; Get-ChildItem $dest -Name })",
+      "Bash(ls \"D:/New Volume D/Coding/Projects\" 2>/dev/null || echo \"Projects folder does not exist yet\")",
+      "Bash(robocopy \"D:\\\\New Volume D\\\\Coding\\\\Claude\\\\Code\" \"D:\\\\New Volume D\\\\Coding\\\\Projects\\\\Clear Doubt JEE Solver\" /E /XD \"node_modules\" \".next\" /XF \"*.log\" /NP /NFL /NDL)",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(powershell -Command ' *)"
     ]
   }
 }

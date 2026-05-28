@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "katex/dist/katex.min.css";
 
 export const metadata: Metadata = {
   title: "ClearDoubt – JEE AI Solver",
   description:
-    "Step-by-step JEE doubt solving — Physics, Chemistry, Maths. Powered by Claude.",
+    "Step-by-step JEE doubt solving with text or photo input. Physics, Chemistry, Maths. Powered by Gemini.",
 };
 
 export default function RootLayout({
