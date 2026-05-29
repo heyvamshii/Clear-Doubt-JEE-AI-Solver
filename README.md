@@ -2,16 +2,16 @@
 
 A clean, single-page web app for JEE doubt-solving. Built with Next.js (App Router), Tailwind, and the Google Generative AI SDK. Streams answers from `gemini-3.5-flash` server-side so the API key stays out of the browser.
 
-Type the question, paste it from the clipboard, drag-and-drop a screenshot, or upload a photo from your phone — the model reads the image, solves it, and explains it like a JEE teacher.
+Type the question, paste it from the clipboard, drag-and-drop a screenshot, or upload a photo from your phone - the model reads the image, solves it, and explains it like a JEE teacher.
 
 ## Features
 
-- **Three subjects** — Physics, Chemistry, Maths (each gets a tailored explanation style)
-- **Multimodal input** — text, clipboard paste (Ctrl+V), drag-and-drop, or file upload
-- **Streaming answers** — tokens appear as they're generated, no full-page wait
-- **Section-styled output** — Quick Take, Core Concept, Step-by-Step, Why Not Others, Memory Hook
-- **KaTeX math rendering** — fractions, Greek letters, integrals, and equations render as real math, not raw LaTeX
-- **Client-side image resize** — phone photos are downscaled to max 1280 px before upload, keeping requests fast
+- **Three subjects** - Physics, Chemistry, Maths (each gets a tailored explanation style)
+- **Multimodal input** - text, clipboard paste (Ctrl+V), drag-and-drop, or file upload
+- **Streaming answers** - tokens appear as they're generated, no full-page wait
+- **Section-styled output** - Quick Take, Core Concept, Step-by-Step, Why Not Others, Memory Hook
+- **KaTeX math rendering** - fractions, Greek letters, integrals, and equations render as real math, not raw LaTeX
+- **Client-side image resize** - phone photos are downscaled to max 1280 px before upload, keeping requests fast
 
 ## Run it
 
@@ -29,10 +29,10 @@ Open `http://localhost:3000`.
 
 ## Layout
 
-- `app/page.tsx` — composes the page
-- `app/layout.tsx` — root layout, KaTeX CSS import, fonts, metadata
-- `app/api/solve/route.ts` — streaming endpoint, calls Gemini server-side, supports text + image
-- `lib/systemPrompt.ts` — the exact JEE-teacher system prompt with `${subject}` substitution and strict math-formatting rules
+- `app/page.tsx` - composes the page
+- `app/layout.tsx` - root layout, KaTeX CSS import, fonts, metadata
+- `app/api/solve/route.ts` - streaming endpoint, calls Gemini server-side, supports text + image
+- `lib/systemPrompt.ts` - the exact JEE-teacher system prompt with `${subject}` substitution and strict math-formatting rules
 - `components/Navbar.tsx`, `HeroSection.tsx`, `SolverCard.tsx`, `AnswerOutput.tsx`, `HowItWorks.tsx`, `Footer.tsx`
 
 ## How streaming + rendering works
@@ -41,7 +41,7 @@ Open `http://localhost:3000`.
 2. The route builds a Gemini `parts` array (image inlineData first, then the text instruction) and starts `generateContentStream`.
 3. Each chunk is enqueued onto a `ReadableStream<Uint8Array>` and sent back over a plain `text/plain` response.
 4. The client reads with `response.body.getReader()` and accumulates the text in React state.
-5. `AnswerOutput.tsx` splits the text into known sections, then converts each section body into HTML — `$...$` and `$$...$$` are rendered via `katex.renderToString()`, lists and bold/italic are handled directly, and the final HTML is injected with `dangerouslySetInnerHTML`. All non-math text is HTML-escaped first.
+5. `AnswerOutput.tsx` splits the text into known sections, then converts each section body into HTML - `$...$` and `$$...$$` are rendered via `katex.renderToString()`, lists and bold/italic are handled directly, and the final HTML is injected with `dangerouslySetInnerHTML`. All non-math text is HTML-escaped first.
 
 ## Image upload flow
 

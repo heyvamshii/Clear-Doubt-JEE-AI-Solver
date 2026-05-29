@@ -22,8 +22,29 @@ function parseDetectedSubject(text: string): Subject | null {
   return null;
 }
 
+// Also hides a partial marker that is still streaming in (e.g. "[SUBJECT: Phys")
+// so the raw marker never flashes on screen before it finishes arriving.
+const PARTIAL_MARKER_RE = /^\s*\[\s*SUBJECT\b[^\]]*$/i;
+const MARKER_PREFIX = "[SUBJECT:";
+
 function stripSubjectMarker(text: string): string {
-  return text.replace(SUBJECT_MARKER_RE, "");
+  const full = text.replace(SUBJECT_MARKER_RE, "");
+  if (full !== text) return full; // complete marker found and removed
+
+  // "[SUBJECT: Phys", opened but not yet closed
+  if (PARTIAL_MARKER_RE.test(text)) return "";
+
+  // The very first characters of the marker, e.g. "[", "[S", "[SUB"
+  const lead = text.replace(/^\s+/, "");
+  if (
+    lead.length > 0 &&
+    lead.length <= MARKER_PREFIX.length &&
+    MARKER_PREFIX.toUpperCase().startsWith(lead.toUpperCase())
+  ) {
+    return "";
+  }
+
+  return text;
 }
 
 /* ─── Section detection ───────────────────────────────────────── */
@@ -132,14 +153,14 @@ function renderInlineHtml(raw: string): string {
     }
   });
 
-  /* 3) HTML-escape everything else. Placeholders survive — esc() only
+  /* 3) HTML-escape everything else. Placeholders survive, esc() only
         touches & < > and " . */
   s = esc(s);
 
   /* 4) Process bold and italic. Placeholders are opaque to these regexes
         because PUA chars are not in [^*\n] or [^_\n] exclusion sets... wait,
         they ARE in those sets (since PUA chars are not * or _ or \n).  So
-        a placeholder INSIDE a bold/italic span is fine — it gets included
+        a placeholder INSIDE a bold/italic span is fine, it gets included
         as inner content and survives untouched into step 5. */
   s = s.replace(
     /\*\*([^*\n]+?)\*\*/g,
@@ -335,7 +356,7 @@ export default function AnswerOutput({
         <span
           title={
             isMismatch
-              ? `You picked ${subject}, but this is a ${displaySubject} question — switching style accordingly.`
+              ? `You picked ${subject}, but this looks like a ${displaySubject} question, so the style switched to match.`
               : displaySubject
           }
           className={[

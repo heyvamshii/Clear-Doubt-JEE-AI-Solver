@@ -68,7 +68,7 @@ export default function SolverCard() {
       return;
     }
     if (file.size > 20 * 1024 * 1024) {
-      setImgError("Image too large — please use a file under 20 MB.");
+      setImgError("Image too large. Please use a file under 20 MB.");
       return;
     }
     try {
